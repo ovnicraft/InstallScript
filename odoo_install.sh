@@ -151,6 +151,8 @@ sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/OCA/account-
 sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/OCA/reporting-engine.git $OE_HOME/custom/
 sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/odoo-ecuador/odoo-ecuador.git $OE_HOME/custom/
 
+ADDONS_PATH=$OE_HOME_EXT/addons,$OE_HOME/custom/web,$OE_HOME/custom/server-tools,$OE_HOME/custom/account-financial-tools,$OE_HOME/custom/account-financial-reporting,$OE_HOME/custom/reporting-engine,$OE_HOME/custom/odoo-ecuador
+
 echo -e "\n---- Setting permissions on home folder ----"
 sudo chown -R $OE_USER:$OE_USER $OE_HOME/*
 
@@ -167,7 +169,7 @@ sudo su root -c "echo 'logfile = /var/log/$OE_USER/$OE_CONFIG$1.log' >> /etc/${O
 if [  $IS_ENTERPRISE = "True" ]; then
     sudo su root -c "echo 'addons_path=$OE_HOME/enterprise/addons,$OE_HOME_EXT/addons' >> /etc/${OE_CONFIG}.conf"
 else
-    sudo su root -c "echo 'addons_path=$OE_HOME_EXT/addons,$OE_HOME/custom/addons' >> /etc/${OE_CONFIG}.conf"
+    sudo su root -c "echo 'addons_path=$ADDONS_PATH' >> /etc/${OE_CONFIG}.conf"
 fi
 
 echo -e "* Create startup file"
