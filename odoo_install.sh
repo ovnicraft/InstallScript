@@ -143,6 +143,14 @@ echo -e "\n---- Create custom module directory ----"
 sudo su $OE_USER -c "mkdir $OE_HOME/custom"
 sudo su $OE_USER -c "mkdir $OE_HOME/custom/addons"
 
+echo -e "\n---- Cloning OCA ----"
+sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/OCA/web.git $OE_HOME/custom/
+sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/OCA/server-tools.git $OE_HOME/custom/
+sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/OCA/account-financial-tools.git $OE_HOME/custom/
+sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/OCA/account-financial-reporting.git $OE_HOME/custom/
+sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/OCA/reporting-engine.git $OE_HOME/custom/
+sudo su git clone --depth 1 --branch $OE_VERSION https://github.com/odoo-ecuador/odoo-ecuador.git $OE_HOME/custom/
+
 echo -e "\n---- Setting permissions on home folder ----"
 sudo chown -R $OE_USER:$OE_USER $OE_HOME/*
 
